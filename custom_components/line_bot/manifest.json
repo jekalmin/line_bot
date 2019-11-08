@@ -1,0 +1,8 @@
+{
+    "domain": "line_bot",
+    "name": "Line Bot",
+    "documentation": "https://github.com/jekalmin/HASS-line-bot",
+    "dependencies": [],
+    "codeowners": ["@jekalmin"],
+    "requirements": []
+  }

@@ -119,8 +119,8 @@ def handle_message(hass: HomeAssistant, line_bot_api: LineBotApi, event: Message
 
     hass.bus.fire(EVENT_WEBHOOK_TEXT_RECEIVED, {
         'reply_token': event.reply_token,
-        'event': event,
-        'content': event.message,
+        'event': event.as_json_dict(),
+        'content': event.message.as_json_dict(),
         'text': event.message.text
     })
 

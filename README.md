@@ -66,7 +66,7 @@ data:
 | --- | --- | --- | ---
 | **to** | no | string | name of chat ID from `allowed_chat_ids` in `configuration.yaml` file to push message.
 | **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
-| **text** | yes | string | any message
+| **buttons** | yes | list | a list of [Actions](https://developers.line.biz/en/reference/messaging-api/#action-objects) (max: 5)
 #### example
 ![162286](https://user-images.githubusercontent.com/2917984/69494774-cb193700-0f02-11ea-9926-320e90b0f121.jpg)
 ```yaml
@@ -92,7 +92,7 @@ data:
 | --- | --- | --- | ---
 | **to** | no | string | name of chat ID from `allowed_chat_ids` in `configuration.yaml` file to push message.
 | **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
-| **text** | yes | string | any message
+| **buttons** | yes | list | a list of [Actions](https://developers.line.biz/en/reference/messaging-api/#action-objects) (max: 2)
 #### example
 ![162289](https://user-images.githubusercontent.com/2917984/69494775-cbb1cd80-0f02-11ea-827a-74955937cc8d.jpg)
 ```yaml

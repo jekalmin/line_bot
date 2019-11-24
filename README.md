@@ -108,5 +108,21 @@ data:
     - text: No # equivalent to {"text" : "No", "label" : "No"}
 ```
 
+## Events
+### line_webhook_text_received
+| event data attribute | dataType | description
+| --- | --- | ---
+| **reply_token** | string | It is used to reply message.
+| **event** | [MessageEvent](https://line-bot-sdk-python.readthedocs.io/en/stable/linebot.models.html#linebot.models.events.MessageEvent) | Event object which contains the sent message. The message field contains a message object which corresponds with the message type. You can reply to message events.
+| **content** | [TextMessage](https://line-bot-sdk-python.readthedocs.io/en/stable/linebot.models.html#linebot.models.messages.TextMessage) | Message object which contains the text sent from the source.
+| **text** | string | actual text received
 
-
+### line_webhook_postback_received
+| event data attribute | dataType | description
+| --- | --- | ---
+| **reply_token** | string | It is used to reply message.
+| **event** | [PostbackEvent](https://line-bot-sdk-python.readthedocs.io/en/stable/linebot.models.html#linebot.models.events.PostbackEvent) | Event object for when a user performs an action on a template message which initiates a postback. You can reply to postback events.
+| **content** | [Postback](https://line-bot-sdk-python.readthedocs.io/en/stable/linebot.models.html#linebot.models.events.Postback) | Postback
+| **data** | string | Postback data
+| **data_json** | dictionary | Postback data as JSON object
+| **params** | dictionary | JSON object with the date and time selected by a user through a datetime picker action. Only returned for postback actions via the datetime picker.

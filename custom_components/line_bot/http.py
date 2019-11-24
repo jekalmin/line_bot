@@ -5,10 +5,11 @@ from homeassistant.const import CONF_TOKEN
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.util.decorator import Registry
+from urllib.parse import parse_qsl
 from aiohttp.web import Request, Response
 from aiohttp.web_exceptions import HTTPBadRequest
 from .const import (
-    DOMAIN, CONF_SECRET, CONF_ALLOWED_CHAT_IDS, EVENT_WEBHOOK_TEXT_RECEIVED
+    DOMAIN, CONF_SECRET, CONF_ALLOWED_CHAT_IDS, EVENT_WEBHOOK_TEXT_RECEIVED, EVENT_WEBHOOK_POSTBACK_RECEIVED
 )
 from linebot import (
     LineBotApi, WebhookParser
@@ -80,9 +81,9 @@ class LineWebhookView(HomeAssistantView):
                 self.notify(event)
                 raise HTTPBadRequest()
 
-            eventName = event.__class__.__name__
-            messageName = event.message.__class__.__name__
-            handler_keys = [eventName, messageName]
+            handler_keys = [event.__class__.__name__]
+            if hasattr(event, 'message'):
+                handler_keys.append(event.message.__class__.__name__)
             handler = HANDLERS.get("_".join(handler_keys))
             handler(self.config.hass, self.line_bot_api, event)
         return 'OK'
@@ -122,6 +123,17 @@ def handle_message(hass: HomeAssistant, line_bot_api: LineBotApi, event: Message
         'event': event.as_json_dict(),
         'content': event.message.as_json_dict(),
         'text': event.message.text
+    })
+
+@HANDLERS.register("PostbackEvent")
+def handle_message(hass: HomeAssistant, line_bot_api: LineBotApi, event: PostbackEvent):
+    hass.bus.fire(EVENT_WEBHOOK_POSTBACK_RECEIVED, {
+        'reply_token': event.reply_token,
+        'event': event.as_json_dict(),
+        'content': event.postback.as_json_dict(),
+        'data': event.postback.data,
+        'data_json': dict(parse_qsl(event.postback.data)),
+        'params': event.postback.params
     })
 
 def exit_chat(line_bot_api: LineBotApi, event: MessageEvent):

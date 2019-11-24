@@ -4,3 +4,4 @@ CONF_SECRET = 'secret'
 CONF_ALLOWED_CHAT_IDS = 'allowed_chat_ids'
 
 EVENT_WEBHOOK_TEXT_RECEIVED = 'line_webhook_text_received'
+EVENT_WEBHOOK_POSTBACK_RECEIVED = 'line_webhook_postback_received'

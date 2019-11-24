@@ -3,7 +3,7 @@ Home Assistant custom component for notifying message via Line Messaging API (ht
 
 ## Usage
 ```
-service: line_bot.push_message
+service: line_bot.send_message
 data:
   to: me
   message:
@@ -43,15 +43,65 @@ line_bot:
 | **allowed_chat_ids** | yes | | dictionary | any name as a key, ID of target recipient as a value. Do not use the LINE ID found on LINE (see [API Documentation](https://developers.line.biz/en/reference/messaging-api/#send-push-message))
 
 ## Services
-### line_bot.push_message
+### line_bot.send_message
 | service data attribute | required | dataType | description
 | --- | --- | --- | ---
-| **to** | yes | string | name of chat ID from `allowed_chat_ids` in `configuration.yaml` file.
+| **to** | no | string | name of chat ID from `allowed_chat_ids` in `configuration.yaml` file to push message.
+| **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
 | **message** | yes | [Message](https://developers.line.biz/en/reference/messaging-api/#message-objects) | eg. [Text message](https://developers.line.biz/en/reference/messaging-api/#text-message), [Image message](https://developers.line.biz/en/reference/messaging-api/#image-message),[Template message](https://developers.line.biz/en/reference/messaging-api/#template-messages), etc...
+#### example
+```yaml
+service: line_bot.send_message
+data:
+  to: me
+  message:
+    type: text
+    message: "Hello World!"
+```
 
 
-### line_bot.reply_message
+### line_bot.send_button_message
+
 | service data attribute | required | dataType | description
 | --- | --- | --- | ---
-| **reply_token** | yes | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event)
-| **message** | yes | [Message](https://developers.line.biz/en/reference/messaging-api/#message-objects) | eg. [Text message](https://developers.line.biz/en/reference/messaging-api/#text-message), [Image message](https://developers.line.biz/en/reference/messaging-api/#image-message),[Template message](https://developers.line.biz/en/reference/messaging-api/#template-messages), etc...
+| **to** | no | string | name of chat ID from `allowed_chat_ids` in `configuration.yaml` file to push message.
+| **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
+| **text** | yes | string | any message
+#### example
+```yaml
+service: line_bot.send_button_message
+data:
+  to: me
+  text: What do you want to do?
+  buttons:
+    # MessageAction (https://developers.line.biz/en/reference/messaging-api/#message-action)
+    - label: Turn off the light
+      text: light off
+    # PostbackAction (https://developers.line.biz/en/reference/messaging-api/#postback-action)
+    - label: Buy
+      data: action=buy&itemid=111
+    # UriAction (https://developers.line.biz/en/reference/messaging-api/#uri-action)
+    - uri: https://www.google.com/
+      label: Google
+```
+
+### line_bot.send_confirm_message
+
+| service data attribute | required | dataType | description
+| --- | --- | --- | ---
+| **to** | no | string | name of chat ID from `allowed_chat_ids` in `configuration.yaml` file to push message.
+| **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
+| **text** | yes | string | any message
+#### example
+```yaml
+service: line_bot.send_confirm_message
+data:
+  to: me
+  text: Are you sure?
+  buttons:
+    # PostbackAction 
+    - text: Yes 
+      data: action=buy&itemid=111 # equivalent to {"label" : "Yes", "data" : "action=buy&itemid=111 "}
+    # MessageAction
+    - text: No # equivalent to {"text" : "No", "label" : "No"}
+```

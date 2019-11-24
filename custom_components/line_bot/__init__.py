@@ -57,19 +57,19 @@ def setup(hass: HomeAssistant, config: Dict[str, Any]):
     def send_button_message(call):
         to = call.data.get("to")
         reply_token = call.data.get("reply_token")
-        message = call.data.get("message")
-        alt_text = call.data.get("alt_text", message)
+        text = call.data.get("text")
+        alt_text = call.data.get("alt_text", text)
         buttons = call.data.get("buttons")
-        button_template = ButtonsTemplate(text=message, actions=to_actions(buttons))
+        button_template = ButtonsTemplate(text=text, actions=to_actions(buttons))
         lineClient.send_message(TemplateSendMessage(alt_text=alt_text, template=button_template), to=to, reply_token=reply_token)
 
     def send_confirm_message(call):
         to = call.data.get("to")
         reply_token = call.data.get("reply_token")
-        message = call.data.get("message")
-        alt_text = call.data.get("altText", message)
+        text = call.data.get("text")
+        alt_text = call.data.get("altText", text)
         buttons = call.data.get("buttons")
-        confirm_template = ConfirmTemplate(text=message, actions=to_actions(buttons))
+        confirm_template = ConfirmTemplate(text=text, actions=to_actions(buttons))
         lineClient.send_message(TemplateSendMessage(alt_text=alt_text, template=confirm_template), to=to, reply_token=reply_token)
 
     hass.services.register(DOMAIN, 'send_message', send_message)

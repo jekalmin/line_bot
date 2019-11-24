@@ -50,6 +50,7 @@ line_bot:
 | **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
 | **message** | yes | [Message](https://developers.line.biz/en/reference/messaging-api/#message-objects) | eg. [Text message](https://developers.line.biz/en/reference/messaging-api/#text-message), [Image message](https://developers.line.biz/en/reference/messaging-api/#image-message),[Template message](https://developers.line.biz/en/reference/messaging-api/#template-messages), etc...
 #### example
+![a1](https://user-images.githubusercontent.com/2917984/69494729-580fc080-0f02-11ea-8231-6d0dde9bae14.png)
 ```yaml
 service: line_bot.send_message
 data:
@@ -59,7 +60,6 @@ data:
     message: "Hello World!"
 ```
 
-
 ### line_bot.send_button_message
 
 | service data attribute | required | dataType | description
@@ -68,6 +68,7 @@ data:
 | **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
 | **text** | yes | string | any message
 #### example
+![162286](https://user-images.githubusercontent.com/2917984/69494774-cb193700-0f02-11ea-9926-320e90b0f121.jpg)
 ```yaml
 service: line_bot.send_button_message
 data:
@@ -93,6 +94,7 @@ data:
 | **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
 | **text** | yes | string | any message
 #### example
+![162289](https://user-images.githubusercontent.com/2917984/69494775-cbb1cd80-0f02-11ea-827a-74955937cc8d.jpg)
 ```yaml
 service: line_bot.send_confirm_message
 data:
@@ -105,3 +107,6 @@ data:
     # MessageAction
     - text: No # equivalent to {"text" : "No", "label" : "No"}
 ```
+
+
+

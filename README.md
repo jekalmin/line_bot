@@ -8,7 +8,7 @@ data:
   to: me
   message:
     type: text
-    message: "Hello World!"
+    text: "Hello World!"
 ```
 
 ## Prequisite
@@ -57,7 +57,7 @@ data:
   to: me
   message:
     type: text
-    message: "Hello World!"
+    text: "Hello World!"
 ```
 
 ### line_bot.send_button_message

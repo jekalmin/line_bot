@@ -1,0 +1,30 @@
+send_message:
+  description: Send a notification. (https://github.com/jekalmin/HASS-line-bot#example)
+  fields:
+    to:
+      description: A pre-authorized name of allowed_chat_ids to send the notification to.
+      example: me
+    message:
+      description: Message Object (https://developers.line.biz/en/reference/messaging-api/#message-objects)
+send_button_message:
+  description: Send a button notification. (https://github.com/jekalmin/HASS-line-bot#example-1)
+  fields:
+    to:
+      description: A pre-authorized name of allowed_chat_ids to send the notification to.
+      example: me
+    text:
+      description: Message body of the notification.
+      example: What do you want to do?
+    buttons:
+      description: "A list of Actions Object (max: 4)"
+send_confirm_message:
+  description: Send a confirm notification. (https://github.com/jekalmin/HASS-line-bot#example-1)
+  fields:
+    to:
+      description: A pre-authorized name of allowed_chat_ids to send the notification to.
+      example: me
+    text:
+      description: Message body of the notification.
+      example: Are you sure?
+    buttons:
+      description: "A list of Actions Object (max: 2)"

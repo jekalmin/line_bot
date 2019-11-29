@@ -41,6 +41,21 @@ MESSAGES = {
     "audio": AudioSendMessage
 }
 
+CONFIG_SCHEMA = vol.Schema(
+    {
+        DOMAIN: vol.All(
+            vol.Schema(
+                {
+                    vol.Required(CONF_TOKEN): cv.string,
+                    vol.Optional(CONF_SECRET): cv.string,
+                    vol.Optional(CONF_ALLOWED_CHAT_IDS): dict,
+                }
+            )
+        )
+    },
+    extra=vol.ALLOW_EXTRA,
+)
+
 def setup(hass: HomeAssistant, config: Dict[str, Any]):
     if config[DOMAIN].get(CONF_SECRET):
         async_register_http(hass, config)

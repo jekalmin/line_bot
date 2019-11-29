@@ -16,14 +16,39 @@ data:
     - Follow instructions from the [link](https://developers.line.biz/en/docs/messaging-api/getting-started/) to create a new channel.
 
 ## Installation
+1. Copy
+    ```
+    /custom_components/line_bot/
+    ```
+    into
+    ```
+    <config directory>/custom_components/line_bot/
+    ```
+2. Go to https://developers.line.biz/console
+3. Select "Provider", and then "Channel" created from [prequisite](#prequisite).
+4. Set configuration.yaml as below (retrieve "Channel access token" and "Channel secret" from Line Console)
+    ```yaml
+    line_bot:
+      token: !secret line_bot_token
+      secret: !secret line_bot_secret
+    ```
+5. Restart HomeAssistant
+6. Set "Webhook URL" from "Messaging API" tab of Line Console as below
+    - Webhook URL is base_url + "/api/line/callback"
+    - Your HomeAssistant URL has to support https
 
-```
-/custom_components/line_bot/
-```
-into
-```
-<config directory>/custom_components/line_bot/
-```
+    ![10](https://user-images.githubusercontent.com/2917984/69878412-3b132d00-1308-11ea-926a-d0029eb96b9a.png)
+7. Click "Verify" button to verify URL is valid. It has to return "Success"
+
+    ![11](https://user-images.githubusercontent.com/2917984/69878717-081d6900-1309-11ea-8b08-c319bd4b333a.png)
+
+8. Add a bot as a friend by either QR code or Bot ID
+9. Send any message to a bot
+10. Get chat_id from HomeAssistant notification
+
+    ![12](https://user-images.githubusercontent.com/2917984/69880905-a4963a00-130e-11ea-8ab8-f1caaa748a4d.png)
+
+11. Set "chat_id" into "allowed_chat_ids" of configuration.yaml
 
 ## Configuration
 #### Example configuration.yaml:
@@ -66,7 +91,7 @@ data:
 | --- | --- | --- | ---
 | **to** | no | string | name of chat ID from `allowed_chat_ids` in `configuration.yaml` file to push message.
 | **reply_token** | no | string | reply_token received from webhook [event](https://developers.line.biz/en/reference/messaging-api/#message-event) to reply message.
-| **buttons** | yes | list | a list of [Actions](https://developers.line.biz/en/reference/messaging-api/#action-objects) (max: 5)
+| **buttons** | yes | list | a list of [Actions](https://developers.line.biz/en/reference/messaging-api/#action-objects) (max: 4)
 #### example
 ![162292](https://user-images.githubusercontent.com/2917984/69495124-d2424400-0f06-11ea-8688-a3cc704eb73f.jpg)
 ```yaml

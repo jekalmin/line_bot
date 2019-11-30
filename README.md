@@ -49,6 +49,7 @@ data:
     ![12](https://user-images.githubusercontent.com/2917984/69880905-a4963a00-130e-11ea-8ab8-f1caaa748a4d.png)
 
 11. Set "chat_id" into "allowed_chat_ids" of configuration.yaml
+12. Restart HomeAssistant and try [examples](https://github.com/jekalmin/HASS-line-bot/tree/master/examples)
 
 ## Configuration
 #### Example configuration.yaml:

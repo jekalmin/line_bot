@@ -4,5 +4,6 @@
     "documentation": "https://github.com/jekalmin/HASS-line-bot",
     "dependencies": [],
     "codeowners": ["@jekalmin"],
-    "requirements": ["line-bot-sdk"]
+    "requirements": ["line-bot-sdk"],
+    "version": "0.0.1"
   }

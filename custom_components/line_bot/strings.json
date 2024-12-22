@@ -1,0 +1,16 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "access_token": "[%key:common::config_flow::data::access_token%]",
+          "channel_secret": "[%key:common::config_flow::data::channel_secret%]"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
+      "unknown": "[%key:common::config_flow::error::unknown%]"
+    }
+  }
+}

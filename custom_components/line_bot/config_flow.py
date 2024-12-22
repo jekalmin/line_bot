@@ -88,14 +88,15 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         config_entry: config_entries.ConfigEntry,
     ) -> config_entries.OptionsFlow:
         """Create the options flow."""
-        return LineBotOptionsFlow()
+        return LineBotOptionsFlow(config_entry)
 
 
 class LineBotOptionsFlow(config_entries.OptionsFlow):
     """OpenAI config flow options handler."""
 
-    def __init__(self) -> None:
+    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
         """Initialize options flow."""
+        self.config_entry = config_entry
         self.selected_chat = None
 
     async def async_step_init(

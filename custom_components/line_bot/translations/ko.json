@@ -1,0 +1,48 @@
+{
+    "config": {
+        "error": {
+            "invalid_auth": "인증에 실패했습니다.",
+            "unknown": "알 수 없는 오류가 발생했습니다."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "access_token": "Access Token",
+                    "channel_secret": "Channel Secret"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Line Bot 설정",
+                "description": "원하는 작업을 선택해주세요.",
+                "data": {
+                    "action": "작업"
+                }
+            },
+            "add_chat": {
+                "title": "Add a chat",
+                "description": "새로운 메세지에서 chat_id 를 선택해주세요. (만약 아무것도 보이지 않으면 라인앱에서 봇에게 메시지를 먼저 보내주세요)",
+                "data": {
+                    "new_messages": "새로운 메세지"
+                }
+            },
+            "configure_chat": {
+                "title": "Configure a chat",
+                "description": "채팅방 명은 채팅방을 식별하는데 사용됩니다.",
+                "data": {
+                    "name": "채팅방 명"
+                }
+            },
+            "remove_chat": {
+                "title": "Remove a chat",
+                "description": "삭제할 채팅방 명을 선택해주세요.",
+                "data": {
+                    "allowed_chat_ids": "채팅방 명"
+                }
+            }
+        }
+    }
+}

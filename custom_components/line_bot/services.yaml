@@ -1,30 +1,74 @@
 send_message:
-  description: Send a notification. (https://github.com/jekalmin/HASS-line-bot#example)
+  description: Send a notification. (https://github.com/jekalmin/line-bot#example)
   fields:
     to:
       description: A pre-authorized name of allowed_chat_ids to send the notification to.
       example: me
+      required: false
+      selector:
+        text:
+    reply_token:
+      description: Reply token retrieved from webhook.
+      required: false
+      selector:
+        text:
     message:
       description: Message Object (https://developers.line.biz/en/reference/messaging-api/#message-objects)
+      example: '{"type": "text", "text": "Hello, world!"}'
+      required: true
+      selector:
+        object:
 send_button_message:
-  description: Send a button notification. (https://github.com/jekalmin/HASS-line-bot#example-1)
+  description: Send a button notification. (https://github.com/jekalmin/line-bot#example-1)
   fields:
     to:
       description: A pre-authorized name of allowed_chat_ids to send the notification to.
       example: me
+      required: false
+      selector:
+        text:
+    reply_token:
+      description: Reply token retrieved from webhook.
+      required: false
+      selector:
+        text:
     text:
       description: Message body of the notification.
       example: What do you want to do?
+      required: true
+      selector:
+        text:
     buttons:
       description: "A list of Actions Object (max: 4)"
+      example: '[{"label": "Turn off the light", "text": "light off"}, {"label": "Buy", "data": "action=buy&itemid=111"}, {"uri": "https://www.google.com", "label": "Google"}]'
+      default: []
+      required: true
+      selector:
+        object:
 send_confirm_message:
-  description: Send a confirm notification. (https://github.com/jekalmin/HASS-line-bot#example-1)
+  description: Send a confirm notification. (https://github.com/jekalmin/line-bot#example-1)
   fields:
     to:
       description: A pre-authorized name of allowed_chat_ids to send the notification to.
       example: me
+      required: false
+      selector:
+        text:
+    reply_token:
+      description: Reply token retrieved from webhook.
+      required: false
+      selector:
+        text:
     text:
       description: Message body of the notification.
       example: Are you sure?
+      required: true
+      selector:
+        text:
     buttons:
       description: "A list of Actions Object (max: 2)"
+      example: '[{"text": "Yes", "data": "action=buy&itemid=111"}, {"text": "No"}]'
+      default: []
+      required: true
+      selector:
+        object:

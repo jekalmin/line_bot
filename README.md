@@ -1,4 +1,4 @@
-# HASS-Line-Bot
+# Line Bot
 Home Assistant custom component for notifying message via Line Messaging API (https://developers.line.biz/en/docs/messaging-api/overview/)
 
 ## Usage
@@ -16,57 +16,39 @@ data:
     - Follow instructions from the [link](https://developers.line.biz/en/docs/messaging-api/getting-started/) to create a new channel.
 
 ## Installation
-1. Copy
-    ```
-    /custom_components/line_bot/
-    ```
-    into
-    ```
-    <config directory>/custom_components/line_bot/
-    ```
+
+1. Install via custom component of HACS.
+
+   [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=jekalmin&repository=line_bot&category=integration)
 2. Go to https://developers.line.biz/console
-3. Select "Provider", and then "Channel" created from [prequisite](#prequisite).
-4. Set configuration.yaml as below (retrieve "Channel access token" and "Channel secret" from Line Console)
-    ```yaml
-    line_bot:
-      token: !secret line_bot_token
-      secret: !secret line_bot_secret
-    ```
-5. Restart HomeAssistant
-6. Set "Webhook URL" from "Messaging API" tab of Line Console as below
+3. Retrieve "Channel access token" and "Channel secret" from Line Console
+
+4. Install integration
+    - [Settings] > [Devices and Services] > [Add Integration] > [Line Bot]
+    - Use "Channel access token" and "Channel secret" retrieved from above (#3).
+        <img width="302" alt="스크린샷 2024-12-22 오후 9 00 33" src="https://github.com/user-attachments/assets/b5a8fc74-d2f7-415a-8c03-10f3fab4e46f" />
+
+
+5. Set "Webhook URL" from "Messaging API" tab of Line Console as below
     - Webhook URL is base_url + "/api/line/callback"
     - Your HomeAssistant URL has to support https
 
-    ![10](https://user-images.githubusercontent.com/2917984/69878412-3b132d00-1308-11ea-926a-d0029eb96b9a.png)
-7. Click "Verify" button to verify URL is valid. It has to return "Success"
+    <img width="300" alt="스크린샷 2024-12-22 오후 9 13 12" src="https://github.com/user-attachments/assets/7c1de92c-e44d-492e-950a-5e11946bb5a2" />
+    
+   
+6. Click "Verify" button to verify URL is valid. It has to return "Success"
 
     ![11](https://user-images.githubusercontent.com/2917984/69878717-081d6900-1309-11ea-8b08-c319bd4b333a.png)
 
-8. Add a bot as a friend by either QR code or Bot ID
-9. Send any message to a bot
-10. Get chat_id from HomeAssistant notification
+7. Add a bot as a friend by either QR code or Bot ID
+8. Send any message to a bot
+9. Go to [Configure > Add a chat] and follow the directions.
 
-    ![12](https://user-images.githubusercontent.com/2917984/69880905-a4963a00-130e-11ea-8ab8-f1caaa748a4d.png)
+    configure | add a chat | configure a chat
+    --|--|--
+    <img width="442" src="https://github.com/user-attachments/assets/63ddeb48-6248-4488-813a-429b8f993a85" /> | <img width="400" src="https://github.com/user-attachments/assets/20475b4b-c2d1-4ee2-bc8a-0ede595f7da7" /> | <img width="400" src="https://github.com/user-attachments/assets/f581c3c7-139a-44ec-8707-5badc4c00f4b" />
 
-11. Set "chat_id" into "allowed_chat_ids" of configuration.yaml
-12. Restart HomeAssistant and try [examples](https://github.com/jekalmin/HASS-line-bot/tree/master/examples)
-
-## Configuration
-#### Example configuration.yaml:
-```yaml
-line_bot:
-  token: !secret line_bot_token
-  secret: !secret line_bot_secret
-  allowed_chat_ids:
-    me: !secret line_chat_id
-```
-#### Configuration variables:
-
-| key | required | default | dataType | description
-| --- | --- | --- | --- | ---
-| **token** | yes | | string | channel access token (to issue a channel access token, click Issue on the "Channel settings" page on the [console](https://developers.line.biz/console/).)
-| **secret** | no | | string | channel secret. Only required to use webhook.
-| **allowed_chat_ids** | yes | | dictionary | any name as a key, ID of target recipient as a value. Do not use the LINE ID found on LINE (see [API Documentation](https://developers.line.biz/en/reference/messaging-api/#send-push-message))
+10. Try [examples](https://github.com/jekalmin/HASS-line-bot/tree/master/examples)
 
 ## Services
 ### line_bot.send_message

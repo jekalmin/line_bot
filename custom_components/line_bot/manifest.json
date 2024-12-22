@@ -1,9 +1,15 @@
 {
-    "domain": "line_bot",
-    "name": "Line Bot",
-    "documentation": "https://github.com/jekalmin/HASS-line-bot",
-    "dependencies": [],
-    "codeowners": ["@jekalmin"],
-    "requirements": ["line-bot-sdk"],
-    "version": "0.0.1"
-  }
+  "domain": "line_bot",
+  "name": "Line Bot",
+  "documentation": "https://github.com/jekalmin/line_bot",
+  "dependencies": [],
+  "config_flow": true,
+  "single_config_entry": true,
+  "codeowners": [
+    "@jekalmin"
+  ],
+  "requirements": [
+    "line-bot-sdk==2.3.0"
+  ],
+  "version": "0.0.2"
+}
